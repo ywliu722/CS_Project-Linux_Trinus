@@ -8,7 +8,8 @@ TrinusVR screen streaming server for Linux
 | Mouse                   |   OK      |
 | SteamVR / OpenVR        |   OK      |
 | Raw output              |   OK      |
-| ???                     |   !!!     |
+
+Because I only use mouse, so I put the OpenVR related file in a directory.
 
 
 ## Dependencies
