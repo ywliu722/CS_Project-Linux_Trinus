@@ -1,0 +1,8 @@
+{
+	"alwaysActivate": false,
+	"name" : "linus_trinus",
+	"directory" : "",
+	"resourceOnly" : false,
+
+	"hmd_presence" : ["*.*"]
+}
