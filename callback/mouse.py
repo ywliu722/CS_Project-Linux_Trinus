@@ -16,11 +16,15 @@ class Mouse:
         euler = data["eulerData"]
         prev = self.prev.get("eulerData", (0, 0, 0))
 
-        self.ui.write(e.EV_REL, e.REL_X, int((euler[0] - prev[0]) * self.mul[0]))
-        self.ui.write(e.EV_REL, e.REL_Y, int((euler[1] - prev[1]) * self.mul[1]))
 
-        self.ui.write(e.EV_KEY, e.BTN_LEFT, data["trigger"] == 2)
-        self.ui.write(e.EV_KEY, e.BTN_RIGHT, data["trigger"] == 4)
+        #self.ui.write(e.EV_REL, e.REL_X, int((euler[0] - prev[0]) * self.mul[0]))
+        #self.ui.write(e.EV_REL, e.REL_Y, int((euler[1] - prev[1]) * self.mul[1]))
+        self.ui.write(e.EV_REL, e.REL_X, int((euler[0] - prev[0]) * self.mul[0]) * -1)
+        self.ui.write(e.EV_REL, e.REL_Y, int((euler[1] - prev[1]) * self.mul[1]) * -1)
+
+        #self.ui.write(e.EV_KEY, e.BTN_LEFT, data["trigger"] == 2)
+        self.ui.write(e.EV_KEY, e.BTN_LEFT, True)
+        #self.ui.write(e.EV_KEY, e.BTN_RIGHT, data["trigger"] == 4)
 
         self.prev = data
         self.ui.syn()
