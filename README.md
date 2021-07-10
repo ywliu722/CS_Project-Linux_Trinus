@@ -14,9 +14,9 @@ TrinusVR screen streaming server for Linux
 ## Dependencies
 
 * Python3 / Pypy3
-* evdev (optional)
+* evdev
 * ffmpeg
-* TrinusVR android client (tested on 2.2.1)
+* TrinusVR android client
 
 ## Running
 
@@ -24,7 +24,6 @@ TrinusVR screen streaming server for Linux
 2. Press the start button in the TrinusVR Android client.
 3. Run LinuxTrinus: `python3 main.py`
 
-## Thanks
+## Reference and source code
 
-* [r57zone](https://github.com/r57zone/OpenVR-OpenTrack) - for good example
-* [TrinusVR team](https://www.trinusvirtualreality.com/) - for android client
+* [ben-romer](https://github.com/ben-romer/LinusTrinus) - Prototype
