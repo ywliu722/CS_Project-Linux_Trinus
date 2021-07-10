@@ -29,5 +29,5 @@ TrinusVR screen streaming server for Linux
 
 ## Notes
 
-* Because I only use mouse, so I put the OpenVR related file in a directory.
+* Because I only use mouse, so I put the OpenVR related file in a directory and we just need the python codes.
 * If the screen resolution is not 1920x1080, then change the right one in frame_generator.py.
