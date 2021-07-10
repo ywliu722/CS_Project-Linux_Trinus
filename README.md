@@ -9,8 +9,6 @@ TrinusVR screen streaming server for Linux
 | SteamVR / OpenVR        |   OK      |
 | Raw output              |   OK      |
 
-Because I only use mouse, so I put the OpenVR related file in a directory.
-
 
 ## Dependencies
 
@@ -22,9 +20,14 @@ Because I only use mouse, so I put the OpenVR related file in a directory.
 ## Running
 
 1. Start the TrinusVR Android client and configure it.
-2. Press the start button in the TrinusVR Android client.
-3. Run LinuxTrinus: `python3 main.py`
+2. Run LinuxTrinus: `sudo python3 main.py`
+3. Press the start button in the TrinusVR Android client.
 
 ## Reference and source code
 
 * [ben-romer](https://github.com/ben-romer/LinusTrinus) - Prototype
+
+## Notes
+
+* Because I only use mouse, so I put the OpenVR related file in a directory.
+* If the screen resolution is not 1920x1080, then change the right one in frame_generator.py.
