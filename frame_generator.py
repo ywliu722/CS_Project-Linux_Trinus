@@ -51,9 +51,11 @@ class FrameGenerator(Thread):
             "vsync": self.vsync,
         }
         ffmpeg_cmd = self.api(self.optirun, **params)
-        command_1 = ffmpeg_cmd
-        command_2 = ffmpeg_cmd + "s 1280x720 -"
-        log.info("ffmpeg cmd: %s", ffmpeg_cmd)
+        #command_1 = ffmpeg_cmd
+        #command_2 = ffmpeg_cmd + "s 1280x720 -"
+        command_1 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 1920x1080 -"
+        command_2 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -framerate 30 -f x11grab -s 1920x1080 -i :0+0,0 -framerate 30 -filter_complex hstack -s 1280x720 -"
+        log.info("ffmpeg cmd: %s", command_1)
         p = subprocess.Popen(
             command_1.split(),
             shell=False,
