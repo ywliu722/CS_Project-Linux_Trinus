@@ -35,6 +35,8 @@ TrinusVR screen streaming server for Linux
         2. If the quality is not as the same as current one, then kill the current process, build new one and clear the buffer.
         3. Some functions and variables are not used, e.g. size() and api(), because I just edit the string of command.
         4. Read the document of ffmpeg to get the meaning of the arguments.
+    
     * /callback/mouse.py
         1. The current mouse input is "up-side-down", "opposite left and right" and hold the left button,
             if you want to use this project in 3D-game, you just need to un-comment line 20,21,25,27 and comment line 22,23,26.
+* The output images are in "3D side-by-side", if you want regular ones, then delete the "-filter_complex [0:v][0:v]hstack" argument in ffmpeg command.
