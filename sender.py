@@ -4,6 +4,7 @@ import json
 import logging
 import socket
 import struct
+import time
 from pprint import pformat
 from threading import Thread
 
@@ -11,6 +12,8 @@ from drop_queue import DropQueue
 
 log = logging.getLogger(__name__)
 
+timestamp = 0
+interval = 0
 
 class Sender(Thread):
     end = False
@@ -63,8 +66,16 @@ class Sender(Thread):
         self.sock.send(scr)
 
     def recv(self):
+        global timestamp, interval
         try:
             t = self.sock.recv(1)
+            
+            current_time = time.time()
+            interval = current_time - timestamp
+            timestamp = current_time
+            print(interval)
+            print(1/interval)
+            
             for i in range(t.count(b"e")):
                 self.send()
         except ConnectionResetError:

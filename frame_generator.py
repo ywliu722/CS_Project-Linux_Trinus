@@ -1,6 +1,7 @@
 import subprocess
 import os
 import json
+import time
 from logging import getLogger
 from threading import Thread
 
@@ -68,7 +69,10 @@ class FrameGenerator(Thread):
         start = -1
         quality = ""
         current_quality = "1080p"
+        timestamp = 0
+        interval = 0
         while not self.end:
+            
             try:
                 input_file = open ('test.json','r')
                 json_array = json.load(input_file)
@@ -97,7 +101,7 @@ class FrameGenerator(Thread):
                     current_quality = quality
             except:
                 continue
-
+            
             data += p.stdout.read(self.buffer_size)
 
             if start == -1:
@@ -109,6 +113,11 @@ class FrameGenerator(Thread):
             if end != -1 and start != -1:
                 frame = data[start : end + 1]
                 self.framebuf.put(frame)
+
+                current_time = time.time()
+                interval = current_time - timestamp
+                timestamp = current_time
+                print(f'Framerate: {1/interval}')
 
                 data = data[end + 2 :]
                 start = -1
