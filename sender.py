@@ -70,11 +70,13 @@ class Sender(Thread):
         try:
             t = self.sock.recv(1)
             
+            '''
             current_time = time.time()
             interval = current_time - timestamp
             timestamp = current_time
             print(interval)
             print(1/interval)
+            '''
             
             for i in range(t.count(b"e")):
                 self.send()

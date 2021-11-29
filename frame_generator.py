@@ -114,10 +114,12 @@ class FrameGenerator(Thread):
                 frame = data[start : end + 1]
                 self.framebuf.put(frame)
 
+                '''
                 current_time = time.time()
                 interval = current_time - timestamp
                 timestamp = current_time
                 print(f'Framerate: {1/interval}')
+                '''
 
                 data = data[end + 2 :]
                 start = -1
