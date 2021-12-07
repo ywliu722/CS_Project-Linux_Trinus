@@ -55,9 +55,10 @@ class FrameGenerator(Thread):
         #command_1 = ffmpeg_cmd
         #command_2 = ffmpeg_cmd + "s 1280x720 -"
         command_1 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 1920x1080 -"
-        command_2 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 1280x720 -"
-        command_3 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 960x540 -"
-        command_4 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 640x360 -"
+        command_2 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 1600x900 -"
+        command_3 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 1280x720 -"
+        command_4 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -f mjpeg -s 960x540 -"
+        
         log.info("ffmpeg cmd: %s", command_1)
         p = subprocess.Popen(
             command_1.split(),
@@ -90,7 +91,7 @@ class FrameGenerator(Thread):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                         )
-                    elif quality == "720p":
+                    elif quality == "900p":
                         p = subprocess.Popen(
                             command_2.split(),
                             shell=False,
@@ -98,7 +99,7 @@ class FrameGenerator(Thread):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                         )
-                    elif quality == "540p":
+                    elif quality == "720p":
                         p = subprocess.Popen(
                             command_3.split(),
                             shell=False,
@@ -106,7 +107,7 @@ class FrameGenerator(Thread):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                         )
-                    elif quality == "360p":
+                    elif quality == "540p":
                         p = subprocess.Popen(
                             command_4.split(),
                             shell=False,
@@ -114,6 +115,8 @@ class FrameGenerator(Thread):
                             stderr=subprocess.PIPE,
                             stdin=subprocess.PIPE,
                         )
+                    else:
+                        pass
                     data = bytearray()
                     start = -1
                     current_quality = quality
