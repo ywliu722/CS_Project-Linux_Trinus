@@ -64,7 +64,7 @@ class Sender(Thread):
         scr = self.framebuf.get()
         self.sock.send(struct.pack(">i", len(scr)))
         self.sock.send(scr)
-
+        
     def recv(self):
         global timestamp, interval
         try:
