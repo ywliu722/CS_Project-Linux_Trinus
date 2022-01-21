@@ -54,11 +54,12 @@ class FrameGenerator(Thread):
         ffmpeg_cmd = self.api(self.optirun, **params)
         #command_1 = ffmpeg_cmd
         #command_2 = ffmpeg_cmd + "s 1280x720 -"
-        command_1 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 1920x1080 -"
-        command_2 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 1600x900 -"
-        command_3 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 1280x720 -"
-        command_4 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 960x540 -"
-        command_5 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 640x360 -"
+        command_1 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -c:v mjpeg -b:v 60M -filter_complex [0:v][0:v]hstack -f mjpeg -s 1920x1080 -"
+        command_2 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -c:v mjpeg -b:v 50M -filter_complex [0:v][0:v]hstack -f mjpeg -s 1600x900 -"
+        command_3 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -c:v mjpeg -b:v 50M -filter_complex [0:v][0:v]hstack -f mjpeg -s 1280x720 -"
+        command_4 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -c:v mjpeg -b:v 50M -filter_complex [0:v][0:v]hstack -f mjpeg -s 960x540 -"
+        command_5 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -c:v mjpeg -b:v 50M -filter_complex [0:v][0:v]hstack -f mjpeg -s 640x360 -"
+        #command_5 = "ffmpeg -f x11grab -s 1920x1080 -i :0+0,0 -filter_complex [0:v][0:v]hstack -q:v 5 -f mjpeg -s 640x360 -"
         
         log.info("ffmpeg cmd: %s", command_1)
         p = subprocess.Popen(
