@@ -36,12 +36,38 @@ Plus minor tweaks: a server-port change in `main.py`, packet-interval timing
 instrumentation in `sender.py` (used during measurement), and the `test.json`
 quality config.
 
-## Tech Stack
+## Upstream Modes
 
-- **Language:** Python 3 / PyPy3
-- **Capture / encode:** FFmpeg
-- **Input injection:** python-evdev
-- **Client:** TrinusVR Android client (Trinus CBVR Lite)
+| Configuration    | Status |
+| ---------------- |:------:|
+| Mouse            |   OK   |
+| SteamVR / OpenVR |   OK   |
+| Raw output       |   OK   |
+
+## Dependencies
+
+- Python 3 / PyPy3
+- evdev
+- FFmpeg
+- TrinusVR Android client (Trinus CBVR Lite)
+
+## Running
+
+1. Start the TrinusVR Android client and configure it.
+2. Run LinusTrinus: `sudo python3 main.py`
+3. Press the start button in the TrinusVR Android client.
+
+## Notes
+
+- If the screen resolution is not 1920x1080, change it in `frame_generator.py`.
+- `frame_generator.py` reads `test.json` to pick the streaming quality; when the
+  quality changes, it kills the current FFmpeg process, starts a new one, and
+  clears the buffer. (Some helpers like `size()` / `api()` are unused — only the
+  command string is edited.)
+- Output is 3D side-by-side; for regular output, drop the
+  `-filter_complex [0:v][0:v]hstack` argument from the FFmpeg command.
+- `/callback/mouse.py` is configured for screen viewing (inverted axes + hold to
+  drag). For 3D-game use, swap the commented/uncommented lines noted in the file.
 
 ## Credits
 
